@@ -96,6 +96,15 @@ export function AiConsultant({ onUpdateConfig }: AiConsultantProps) {
             content: `I've updated your brand identity! ${reasoning}`,
           },
         ]);
+      } else if (data.error) {
+        console.error("Server API Error:", data.error);
+        setMessages((prev) => [
+          ...prev,
+          {
+            role: "model",
+            content: `Error: ${data.error} ${data.details?.message || ""}`,
+          },
+        ]);
       } else if (data.text) {
         setMessages((prev) => [...prev, { role: "model", content: data.text }]);
       }
