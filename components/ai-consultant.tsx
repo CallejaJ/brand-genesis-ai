@@ -58,7 +58,17 @@ export function AiConsultant({ onUpdateConfig }: AiConsultantProps) {
       // Google's SDK expects history items to have `parts: string | Part[]` (or simple text if using helper)
       // Actually standard format is { role: string, parts: string | array }.
 
-      const history = messages.map((m) => ({
+      // Gemini API requires the first message to be from 'user'.
+      // Our chat initializes with a 'model' greeting, so we must filter it out.
+      const validHistory = messages.filter((m, index) => {
+        // Always include user messages
+        if (m.role === "user") return true;
+        // Include model messages ONLY if they are not the first one
+        if (m.role === "model" && index > 0) return true;
+        return false;
+      });
+
+      const history = validHistory.map((m) => ({
         role: m.role,
         parts: [{ text: m.content }],
       }));
