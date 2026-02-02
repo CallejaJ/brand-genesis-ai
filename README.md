@@ -1,250 +1,171 @@
-# 🎨 Favicon Generator
-
-A modern, responsive web application built with Next.js for creating beautiful, professional favicons with ease. Generate custom favicons with various shapes, colors, and icons, then download them instantly as SVG files.
-
-![Favicon Generator Preview](/placeholder.svg?height=400&width=800&query=favicon%20generator%20app%20interface)
-
-## ✨ Features
-
-### 🎯 Icon Selection
-
-- Choose from **10 professionally designed Lucide icons**
-- Star, Heart, Lightning, Shield, Crown, Gem, Rocket, Trophy, Target, and Sparkles
-- Clean, modern icon designs optimized for favicon use
-
-### 🔷 Shape Options
-
-- **Rounded Rectangle**: Modern, friendly appearance
-- **Circle**: Classic, clean look
-- **Square**: Bold, geometric style
-
-### 🎨 Color System
-
-- **6 Beautiful Gradient Presets**: Ocean, Sunset, Forest, Purple, Pink, Midnight
-- **Custom Color Picker**: Unlimited gradient combinations
-- **Real-time Preview**: See changes instantly as you customize
-
-### 👁️ Live Preview
-
-- **Multiple Size Preview**: 16×16, 32×32, 64×64 pixels
-- **Browser Tab Simulation**: See how your favicon looks in actual browser tabs
-- **Device Compatibility**: Preview across desktop, tablet, and mobile devices
-
-### 📥 Export Options
-
-- **Instant SVG Download**: High-quality vector format
-- **Copy to Clipboard**: One-click code copying
-- **Clean SVG Code**: Optimized, readable SVG markup
-
-### 🌐 Modern Web Standards
-
-- **Responsive Design**: Works perfectly on all screen sizes
-- **Accessibility**: WCAG 2.1 compliant with screen reader support
-- **Dark/Light Mode**: System preference detection with manual toggle
-- **Progressive Enhancement**: Works without JavaScript for basic functionality
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Node.js 18.0 or later
-- npm, yarn, or pnpm package manager
-
-### Installation
-
-1. **Clone the repository**
-   \`\`\`bash
-   git clone https://github.com/yourusername/favicon-generator.git
-   cd favicon-generator
-   \`\`\`
-
-2. **Install dependencies**
-   \`\`\`bash
-   npm install
-
-   # or
-
-   yarn install
-
-   # or
-
-   pnpm install
-   \`\`\`
-
-3. **Run the development server**
-   \`\`\`bash
-   npm run dev
-
-   # or
-
-   yarn dev
-
-   # or
-
-   pnpm dev
-   \`\`\`
-
-4. **Open your browser**
-   Navigate to [http://localhost:3000](http://localhost:3000) to see the application.
-
-## 🏗️ Project Structure
-
-\`\`\`
-favicon-generator/
-├── app/
-│ ├── layout.tsx # Root layout with theme provider
-│ ├── page.tsx # Main generator page
-│ ├── features/
-│ │ └── page.tsx # Features showcase page
-│ └── globals.css # Global styles and Tailwind CSS
-├── components/
-│ ├── ui/ # Shadcn/ui components
-│ ├── navigation.tsx # Main navigation component
-│ ├── mode-toggle.tsx # Theme toggle component
-│ ├── theme-provider.tsx # Theme context provider
-│ ├── favicon-generator.tsx # Main generator logic
-│ └── favicon-preview.tsx # Preview component
-├── hooks/
-│ └── use-toast.ts # Toast notification hook
-├── lib/
-│ └── utils.ts # Utility functions
-└── public/ # Static assets
-\`\`\`
-
-## 🛠️ Built With
-
-### Core Technologies
-
-- **[Next.js 14](https://nextjs.org/)** - React framework with App Router
-- **[TypeScript](https://www.typescriptlang.org/)** - Type-safe JavaScript
-- **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first CSS framework
-
-### UI Components
-
-- **[Shadcn/ui](https://ui.shadcn.com/)** - Modern React component library
-- **[Lucide React](https://lucide.dev/)** - Beautiful icon library
-- **[next-themes](https://github.com/pacocoursey/next-themes)** - Theme management
-
-### Key Features
-
-- **Responsive Design** - Mobile-first approach
-- **Accessibility** - WCAG 2.1 compliant
-- **Performance** - Optimized for speed and SEO
-- **Modern Standards** - ES2022+ JavaScript features
-
-## 📱 Usage
-
-### Creating a Favicon
-
-1. **Choose an Icon**: Select from 10 professional icons in the icon grid
-2. **Select Shape**: Pick between rounded rectangle, circle, or square
-3. **Customize Colors**:
-   - Use one of 6 gradient presets, or
-   - Create custom gradients with the color picker
-4. **Preview**: See real-time previews in multiple sizes and contexts
-5. **Download**: Click "Download SVG" or "Copy Code" to get your favicon
-
-### Integration
-
-Add the downloaded SVG favicon to your website:
-
-\`\`\`html
-
-<!-- In your HTML head -->
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<link rel="icon" type="image/png" href="/favicon.png">
-\`\`\`
-
-## 🎨 Customization
-
-### Adding New Icons
-
-1. Import the icon from Lucide React
-2. Add it to the \`icons\` array in \`components/favicon-generator.tsx\`
-3. Add the corresponding SVG path in the \`getIconPath\` function
-
-### Adding Color Presets
-
-Add new gradient presets to the \`gradientPresets\` array:
-
-\`\`\`typescript
-const gradientPresets = [
-// ... existing presets
-{ name: "Custom", from: "#yourcolor", to: "#yourcolor2" },
-]
-\`\`\`
-
-### Styling
-
-The project uses Tailwind CSS with a custom design system. Modify \`app/globals.css\` to customize:
-
-- Color palette
-- Typography
-- Spacing
-- Border radius
-- Shadows
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-### Development Guidelines
-
-1. **Code Style**: Follow the existing TypeScript and React patterns
-2. **Components**: Use functional components with hooks
-3. **Styling**: Use Tailwind CSS classes, avoid custom CSS when possible
-4. **Accessibility**: Ensure all interactive elements are keyboard accessible
-5. **Testing**: Test across different browsers and devices
-
-### Reporting Issues
-
-Please use the GitHub issue tracker to report bugs or request features.
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- **[Shadcn](https://twitter.com/shadcn)** for the amazing UI component library
-- **[Lucide](https://lucide.dev/)** for the beautiful icon set
-- **[Vercel](https://vercel.com/)** for the deployment platform
-- **[Tailwind CSS](https://tailwindcss.com/)** for the utility-first CSS framework
-
-## 📞 Support
-
-If you have any questions or need help, please:
-
-- Check the [documentation](https://github.com/yourusername/favicon-generator/wiki)
-- Open an [issue](https://github.com/yourusername/favicon-generator/issues)
-- Contact us at [support@favicongen.com](mailto:support@favicongen.com)
+# BrandGenesis AI
+
+<div align="center">
+    <img src="https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js" alt="Next.js" />
+    <img src="https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React" />
+    <img src="https://img.shields.io/badge/Ethereum-Sepolia-3C3C3D?style=for-the-badge&logo=ethereum" alt="Ethereum" />
+    <img src="https://img.shields.io/badge/Privy-Auth-6366F1?style=for-the-badge" alt="Privy" />
+    <img src="https://img.shields.io/badge/ZeroDev-Gasless-00D395?style=for-the-badge" alt="ZeroDev" />
+    <img src="https://img.shields.io/badge/Gemini-AI-8E75B2?style=for-the-badge&logo=google" alt="Gemini AI" />
+</div>
+
+<p align="center">
+    <i>An AI-powered Web3 branding tool. Chat with an expert AI consultant to generate your brand identity and mint it as an NFT—completely gasless.</i>
+</p>
 
 ---
 
-**Made with ❤️ by [Your Name](https://github.com/yourusername)**
+## Project Overview
 
-⭐ Star this repository if you found it helpful!
-\`\`\`
+BrandGenesis AI transforms the concept of a simple favicon generator into a comprehensive **Web3 Brand Consultant**. Users interact with an AI specialized in design theory to create a unique logo and color palette, which can then be minted as an NFT on the Sepolia testnet without paying any gas fees.
 
-I've created a comprehensive README.md file that includes:
+### Core Features
 
-## 📋 **Key Sections**
+| Feature                  | Description                                                                         |
+| ------------------------ | ----------------------------------------------------------------------------------- |
+| **AI Design Consultant** | Gemini-powered chat interface that suggests logos based on your project description |
+| **Instant Preview**      | Real-time rendering of your favicon in various contexts (Browser, Mobile, App)      |
+| **Gasless Minting**      | Mint your Brand NFT for free, sponsored by ZeroDev (Account Abstraction)            |
+| **Smart Auth**           | Seamless login via Email, Google, or Wallet using Privy                             |
+| **Retro Aesthetic**      | A fully immersive Cyberpunk/Arcade UI with scanlines and neon typography            |
 
-- **Project overview** with feature highlights
-- **Installation instructions** with step-by-step setup
-- **Project structure** showing file organization
-- **Technology stack** with links to documentation
-- **Usage guide** for creating favicons
-- **Customization options** for developers
-- **Contributing guidelines** for open source collaboration
+---
 
-## ✨ **Highlights**
+## How It Works
 
-- **Professional formatting** with emojis and clear sections
-- **Code examples** with proper syntax highlighting
-- **Installation commands** for different package managers
-- **Integration examples** for using generated favicons
-- **Development guidelines** for contributors
-- **Support information** for users
+```
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   User Chats    │───>│   AI Generates  │───>│  Preview Brand  │
+│   with Consultant│    │   Identity      │    │                 │
+└─────────────────┘    └─────────────────┘    └────────┬────────┘
+                                                       │
+                                                       v
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│  NFT Minted     │<───│  Gasless TX     │<───│   User Mints    │
+│  On-Chain       │    │  (ZeroDev)      │    │   Brand Identity│
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+```
 
-The README provides everything needed for users to understand, install, use, and contribute to the Favicon Generator project!
+### The Workflow
+
+1. **Consultation**: Describe your project to the AI (e.g., "A DeFi protocol for yield farming").
+2. **Generation**: The AI applies design principles to suggest an icon, shape, and color palette.
+3. **Refinement**: Tweak the design manually or ask the AI for changes.
+4. **Minting**: Once satisfied, mint your brand as an NFT. ZeroDev handles the gas fees via a Paymaster.
+
+---
+
+## AI Consultant System
+
+The platform leverages **Google Gemini 1.5 Flash** with a specialized system prompt acting as a Senior Brand Designer.
+
+### Capabilities
+
+| Skill                 | Description                                                          |
+| --------------------- | -------------------------------------------------------------------- |
+| **Color Psychology**  | Suggests colors that evoke the right emotions (e.g., Blue for Trust) |
+| **Symbolism**         | Chooses shapes and icons that align with the brand archetype         |
+| **Context Awareness** | Adapts designs based on the specific industry (Web3, SaaS, Gaming)   |
+
+---
+
+## Gasless Transactions (Account Abstraction)
+
+Users can mint their Brand NFTs **without holding ETH**. This is powered by:
+
+- **ZeroDev**: Kernel Smart Accounts (ERC-4337)
+- **Privy**: Information-less wallet creation
+- **Paymaster**: Automatically sponsors the minting transaction
+
+---
+
+## Technology Stack
+
+### Frontend
+
+- **[Next.js 15](https://nextjs.org/)** - App Router
+- **[React 19](https://react.dev/)** - UI Library
+- **[Tailwind CSS](https://tailwindcss.com/)** - Styling (Retro Theme)
+- **[shadcn/ui](https://ui.shadcn.com/)** - Components
+- **[Lucide React](https://lucide.dev/)** - Icons
+
+### Web3
+
+- **[Privy](https://privy.io/)** - Authentication & Embedded Wallets
+- **[ZeroDev](https://zerodev.app/)** - Account Abstraction (AA)
+- **[viem](https://viem.sh/)** - Low-level Ethereum interactions
+
+### AI
+
+- **[Google Gemini API](https://ai.google.dev/)** - Generative AI Model
+
+---
+
+## Project Setup
+
+### Prerequisites
+
+- Node.js 18+
+- Privy App ID
+- ZeroDev Project ID
+- Google AI API Key
+
+### Environment Configuration
+
+Create a `.env.local` file:
+
+```env
+# Privy - Authentication
+NEXT_PUBLIC_PRIVY_APP_ID=your_privy_app_id
+# (Optional) Server-side secret
+PRIVY_APP_SECRET=your_privy_secret
+
+# ZeroDev - Account Abstraction
+NEXT_PUBLIC_ZERODEV_PROJECT_ID=your_zerodev_project_id
+
+# Google AI - Consultant
+GOOGLE_API_KEY=your_google_api_key
+
+# Blockchain
+SEPOLIA_RPC_URL=https://rpc.sepolia.org
+```
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/your-username/brand-genesis-ai.git
+cd brand-genesis-ai
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+The app will be available at `http://localhost:3000`
+
+---
+
+## Deployment
+
+### Vercel (Recommended)
+
+1. Push to GitHub
+2. Import project in [Vercel](https://vercel.com)
+3. Add environment variables (Privy ID, ZeroDev ID, Google Key)
+4. Deploy
+
+---
+
+## License
+
+MIT License - Built for the Web3 design community.
+
+---
+
+<div align="center">
+    <p><b>BrandGenesis AI</b></p>
+    <p>Design - Mint - Own</p>
+</div>
