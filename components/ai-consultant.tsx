@@ -170,7 +170,7 @@ export function AiConsultant({ onUpdateConfig }: AiConsultantProps) {
                   </AvatarFallback>
                 </Avatar>
                 <div
-                  className={`rounded-lg p-3 max-w-[80%] text-sm font-terminal leading-relaxed ${
+                  className={`rounded-lg p-3 max-w-[80%] text-sm font-terminal leading-relaxed whitespace-pre-wrap break-words ${
                     m.role === "user"
                       ? "bg-blue-950/50 text-blue-100 border border-blue-500/20"
                       : "bg-purple-950/50 text-purple-100 border border-purple-500/20"

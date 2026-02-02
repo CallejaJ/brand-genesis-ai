@@ -5,7 +5,7 @@ const apiKey = process.env.GOOGLE_API_KEY || "";
 const genAI = new GoogleGenerativeAI(apiKey);
 
 const model = genAI.getGenerativeModel({
-  model: "gemini-1.5-flash",
+  model: "gemini-flash-latest",
   systemInstruction: `You are BrandGenesis, an expert AI Brand Consultant for Web3 projects. 
 Your goal is to help users define their visual identity based on their project's mission, vibe, and target audience.
 Use the provided Design Knowledge to reason about your choices.
