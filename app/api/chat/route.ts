@@ -195,6 +195,12 @@ export async function POST(req: Request) {
     });
   } catch (error) {
     console.error("Gemini API Error:", error);
-    return Response.json({ error: "Internal Server Error" }, { status: 500 });
+    // DEBUG: Return actual error to client to diagnose production issue
+    const errorMessage =
+      error instanceof Error ? error.message : "Unknown error";
+    return Response.json(
+      { error: errorMessage, details: error },
+      { status: 500 },
+    );
   }
 }
