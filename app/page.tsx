@@ -117,12 +117,8 @@ export default function HomePage() {
             </CardHeader>
             <CardContent className="flex-1 flex flex-col items-center text-center p-6">
               <div className="flex-1 flex flex-col items-center justify-center gap-6">
-                <div className="p-6 rounded-full bg-green-500/10 animate-pulse">
-                  <img
-                    src="/logo-transparent.png"
-                    className="w-32 h-32 opacity-50 grayscale"
-                    alt="Ghost"
-                  />
+                <div className="p-6 rounded-full bg-gradient-to-br from-purple-500/20 to-blue-500/20 animate-pulse">
+                  <Brain className="w-32 h-32 text-purple-400 drop-shadow-[0_0_15px_rgba(168,85,247,0.5)]" />
                 </div>
               </div>
               <div className="w-full mt-auto pt-6">
