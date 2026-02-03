@@ -1,162 +1,111 @@
 "use client";
 
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { usePrivy, useWallets } from "@privy-io/react-auth";
+import { Loader2, Sparkles, ExternalLink } from "lucide-react";
+import { useMint } from "@/hooks/useMint";
 import { useToast } from "@/hooks/use-toast";
-import { createGaslessAccount } from "@/lib/zerodev";
-import { Loader2, Sparkles, AlertCircle } from "lucide-react";
-import { parseEther } from "viem";
+import { useEffect } from "react";
 
-function InternalMintButton() {
-  const { authenticated, user, login } = usePrivy();
-  const { wallets } = useWallets();
+// Optional: Import global context if the config is stored there,
+// OR assume the parent component passes the config needed for minting if we lifted state up?
+// The current page.tsx HAS the state. But this button is inside page.tsx as <MintButton />.
+// It seems `MintButton` in page.tsx doesn't take props currently?
+// Let's check page.tsx usage.
+// Ah, in page.tsx: <MintButton /> is used without props.
+// BUT, the config is in page.tsx state `faviconConfig`.
+// I should update page.tsx to pass the config to MintButton, or expose a Context.
+// For now, I'll update MintButton to accept props OR keep it independent if it can read state?
+// It can't read page.tsx state magically.
+// I will modify this component to accept `config` as a prop.
+
+// WAIT: The previous MintButton didn't take config?
+// Previous: `export function MintButton() { ... }`
+// It was just doing a dummy transaction with 0 ETH.
+// Now we need ACTUAL data.
+// So I will change the signature to accept props.
+
+interface MintButtonProps {
+  config?: {
+    icon: string;
+    shape: string;
+    gradient: { from: string; to: string };
+  };
+}
+
+export function MintButton({ config }: MintButtonProps) {
+  const { mintBrand, isMinting, txHash, error, isAuthenticated, login } =
+    useMint();
   const { toast } = useToast();
-  const [isLoading, setIsLoading] = useState(false);
 
-  const handleMint = async () => {
-    if (!authenticated) {
-      login();
-      return;
-    }
-
-    const embeddedWallet = wallets.find(
-      (wallet) => wallet.walletClientType === "privy",
-    );
-
-    if (!embeddedWallet) {
+  useEffect(() => {
+    if (txHash) {
       toast({
-        title: "No Wallet Found",
-        description: "Please login with a Privy wallet to act as the signer.",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    setIsLoading(true);
-
-    try {
-      // Switch chain to Sepolia if needed
-      await embeddedWallet.switchChain(11155111);
-
-      // Get the EIP-1193 provider
-      const provider = await embeddedWallet.getEthereumProvider();
-
-      // We need to construct a Viem WalletClient from this provider
-      // PLEASE NOTE: In a real app we'd construct this properly.
-      // For this demo, we'll try to use the raw provider or a simple viem client construction
-      // Actually, createGaslessAccount expects a viem WalletClient.
-      // Let's rely on standard window.ethereum style provider wrapping if possible,
-      // or cleaner: use the `privy-wagmi` integration if we had it.
-      // Since we are manual:
-
-      const { createWalletClient, custom } = await import("viem");
-      const { sepolia } = await import("viem/chains");
-
-      const walletClient = createWalletClient({
-        account: embeddedWallet.address as `0x${string}`,
-        chain: sepolia,
-        transport: custom(provider),
-      });
-
-      // Initialize ZeroDev Account
-      const kernelClient = await createGaslessAccount(walletClient);
-
-      // Send a dummy transaction (Self-Transfer of 0 ETH)
-      // In a real app, this would be a contract call (e.g., mintNFT)
-      const txHash = await kernelClient.sendTransaction({
-        to: embeddedWallet.address as `0x${string}`,
-        value: parseEther("0"),
-        data: "0x", // Empty data
-      });
-
-      console.log("Transaction sent:", txHash);
-
-      toast({
-        title: "Mint Successful! (Simulated)",
-        description: `Gasless transaction sent: ${txHash.slice(0, 10)}...`,
+        title: "Mint Successful!",
+        description: "Your Brand Identity has been minted on-chain.",
         action: (
           <a
             href={`https://sepolia.etherscan.io/tx/${txHash}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs underline"
+            className="flex items-center gap-1"
           >
-            View on Etherscan
+            View <ExternalLink className="h-3 w-3" />
           </a>
         ),
       });
-    } catch (error: any) {
-      console.error("Minting Error:", error);
+    }
+  }, [txHash, toast]);
+
+  useEffect(() => {
+    if (error) {
       toast({
-        title: "Minting Failed",
-        description:
-          error.message || "An error occurred during the transaction.",
+        title: "Mint Failed",
+        description: error,
         variant: "destructive",
       });
-    } finally {
-      setIsLoading(false);
     }
+  }, [error, toast]);
+
+  const handleClick = () => {
+    if (!isAuthenticated) {
+      login();
+      return;
+    }
+    if (!config) {
+      toast({
+        title: "Configuration Error",
+        description: "No brand configuration found.",
+        variant: "destructive",
+      });
+      return;
+    }
+    mintBrand(config);
   };
 
   return (
     <div className="w-full text-center space-y-2">
-      {!authenticated ? (
-        <Button
-          onClick={login}
-          className="w-full bg-green-900/20 text-green-700 border border-green-900 hover:bg-green-900/40"
-        >
-          Connect to Mint
-        </Button>
-      ) : (
-        <Button
-          onClick={handleMint}
-          disabled={isLoading}
-          className="w-full bg-green-600 hover:bg-green-500 text-black font-press-start text-xs border border-white/20 shadow-[4px_4px_0px_0px_#000000] active:translate-y-[2px] active:shadow-none"
-        >
-          {isLoading ? (
-            <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Minting...
-            </>
-          ) : (
-            <>
-              <Sparkles className="mr-2 h-4 w-4" />
-              Mint Brand NFT (Free)
-            </>
-          )}
-        </Button>
-      )}
+      <Button
+        onClick={handleClick}
+        disabled={isMinting}
+        className="w-full bg-green-600 hover:bg-green-500 text-black font-press-start text-xs border border-white/20 shadow-[4px_4px_0px_0px_#000000] active:translate-y-[2px] active:shadow-none disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        {isMinting ? (
+          <>
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            Minting...
+          </>
+        ) : !isAuthenticated ? (
+          "Connect Wallet"
+        ) : (
+          <>
+            <Sparkles className="mr-2 h-4 w-4" />
+            Mint Brand NFT (Free)
+          </>
+        )}
+      </Button>
       <p className="text-[10px] text-gray-500 font-mono">
         *Gas fees sponsored by ZeroDev
       </p>
     </div>
   );
-}
-
-export function MintButton() {
-  const isConfigured =
-    typeof process !== "undefined" &&
-    !!process.env.NEXT_PUBLIC_PRIVY_APP_ID &&
-    !!process.env.NEXT_PUBLIC_ZERODEV_PROJECT_ID;
-
-  if (!isConfigured) {
-    return (
-      <div className="w-full text-center p-4 border border-dashed border-gray-700 rounded bg-gray-900/50">
-        <p className="text-xs text-gray-500 font-mono mb-2">
-          Web3 Config Missing
-        </p>
-        <Button
-          variant="outline"
-          size="sm"
-          disabled
-          className="w-full opacity-50"
-        >
-          Minting Disabled
-        </Button>
-      </div>
-    );
-  }
-
-  return <InternalMintButton />;
 }
