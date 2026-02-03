@@ -39,7 +39,7 @@ function PrivyLoginButton() {
   return (
     <Button
       onClick={login}
-      className="bg-[hsl(285,86%,55%)] hover:bg-[hsl(285,86%,55%)]/90 text-white font-bold text-xs rounded-md shadow-lg hover:shadow-xl transition-all h-9 px-4"
+      className="bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs rounded-md shadow-lg hover:shadow-xl transition-all h-9 px-4"
     >
       <Wallet className="mr-2 h-4 w-4" />
       Connect Wallet
