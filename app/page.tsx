@@ -119,7 +119,7 @@ export default function HomePage() {
                 <div className="p-6 rounded-full bg-gradient-to-br from-purple-500/20 to-blue-500/20 animate-pulse">
                   <img
                     src="/logo.png"
-                    className="w-24 h-24 drop-shadow-[0_0_15px_rgba(168,85,247,0.5)] mix-blend-screen"
+                    className="w-24 h-24 mix-blend-screen"
                     alt="Brain Animation"
                   />
                 </div>
