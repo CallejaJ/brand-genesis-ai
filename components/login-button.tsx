@@ -39,10 +39,13 @@ function PrivyLoginButton() {
   return (
     <Button
       onClick={login}
-      className="bg-green-600 hover:bg-green-700 text-black font-press-start text-[10px] md:text-xs rounded-none border border-green-500 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:translate-y-[2px] active:shadow-none transition-all h-9 px-4"
+      className="relative overflow-hidden bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white font-bold text-xs rounded-full border border-white/10 shadow-lg px-6 h-10 transition-all active:scale-95"
     >
-      <Wallet className="mr-2 h-4 w-4" />
-      Connect Wallet
+      <div className="absolute inset-0 -translate-x-full animate-shimmer bg-gradient-to-r from-transparent via-white/20 to-transparent z-0" />
+      <span className="relative z-10 flex items-center">
+        <Wallet className="mr-2 h-4 w-4" />
+        Connect Wallet
+      </span>
     </Button>
   );
 }

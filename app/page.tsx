@@ -6,7 +6,6 @@ import { FaviconPreview } from "@/components/favicon-preview";
 import { AiConsultant } from "@/components/ai-consultant";
 import { LoginButton } from "@/components/login-button";
 import { Legend } from "@/components/legend";
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -119,7 +118,7 @@ export default function HomePage() {
                 <div className="p-6 rounded-full bg-gradient-to-br from-purple-500/20 to-blue-500/20 animate-pulse">
                   <img
                     src="/logo-transparent.png"
-                    className="w-24 h-24"
+                    className="w-18 h-18"
                     alt="Brain Animation"
                   />
                 </div>
