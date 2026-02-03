@@ -1,7 +1,24 @@
-import { Navigation } from "@/components/navigation"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Palette, Shapes, Eye, Download, Copy, Smartphone, Accessibility, Code, Globe, Sparkles } from "lucide-react"
+import { Header } from "@/components/header";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import {
+  Palette,
+  Shapes,
+  Eye,
+  Download,
+  Copy,
+  Smartphone,
+  Accessibility,
+  Code,
+  Globe,
+  Sparkles,
+} from "lucide-react";
 
 const features = [
   {
@@ -70,18 +87,21 @@ const features = [
     description: "WCAG compliant with screen reader support",
     badge: "WCAG 2.1",
   },
-]
+];
 
 export default function FeaturesPage() {
   return (
     <div className="min-h-screen bg-background">
-      <Navigation />
+      <Header />
 
       <main className="container mx-auto px-4 py-8">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold tracking-tight mb-4">Powerful Features</h1>
+          <h1 className="text-4xl font-bold tracking-tight mb-4">
+            Powerful Features
+          </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Everything you need to create professional favicons with ease and precision.
+            Everything you need to create professional favicons with ease and
+            precision.
           </p>
         </div>
 
@@ -96,7 +116,9 @@ export default function FeaturesPage() {
                 <CardTitle className="text-lg">{feature.title}</CardTitle>
               </CardHeader>
               <CardContent>
-                <CardDescription className="text-sm">{feature.description}</CardDescription>
+                <CardDescription className="text-sm">
+                  {feature.description}
+                </CardDescription>
               </CardContent>
             </Card>
           ))}
@@ -106,11 +128,14 @@ export default function FeaturesPage() {
           <Card className="max-w-2xl mx-auto">
             <CardHeader>
               <CardTitle className="text-2xl">Ready to Get Started?</CardTitle>
-              <CardDescription>Create your first favicon in seconds with our intuitive generator.</CardDescription>
+              <CardDescription>
+                Create your first favicon in seconds with our intuitive
+                generator.
+              </CardDescription>
             </CardHeader>
           </Card>
         </div>
       </main>
     </div>
-  )
+  );
 }
