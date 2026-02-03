@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { Brain } from "lucide-react";
 
 import { FaviconPreview } from "@/components/favicon-preview";
 import { AiConsultant } from "@/components/ai-consultant";
@@ -118,7 +117,11 @@ export default function HomePage() {
             <CardContent className="flex-1 flex flex-col items-center text-center p-6">
               <div className="flex-1 flex flex-col items-center justify-center gap-6">
                 <div className="p-6 rounded-full bg-gradient-to-br from-purple-500/20 to-blue-500/20 animate-pulse">
-                  <Brain className="w-32 h-32 text-purple-400 drop-shadow-[0_0_15px_rgba(168,85,247,0.5)]" />
+                  <img
+                    src="/favicon-gen.svg"
+                    className="w-24 h-24 drop-shadow-[0_0_15px_rgba(168,85,247,0.5)]"
+                    alt="Brain Animation"
+                  />
                 </div>
               </div>
               <div className="w-full mt-auto pt-6">
