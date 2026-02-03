@@ -21,9 +21,7 @@ export function PrivyProviderWrapper({
       config={{
         // Embedded wallets for gasless onboarding
         embeddedWallets: {
-          ethereum: {
-            createOnLogin: "users-without-wallets",
-          },
+          createOnLogin: "users-without-wallets",
         },
         // Sepolia testnet
         defaultChain: sepolia,

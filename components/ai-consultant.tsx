@@ -133,95 +133,81 @@ export function AiConsultant({ onUpdateConfig }: AiConsultantProps) {
   };
 
   return (
-    <Card className="flex flex-col h-[600px] border-primary/20 bg-black/40 backdrop-blur-sm">
-      <CardHeader className="pb-3 border-b border-white/10">
-        <div className="flex items-center gap-2">
-          <Sparkles className="h-5 w-5 text-purple-400" />
-          <CardTitle className="text-lg text-purple-300 font-press-start text-xs">
-            AI Brand Consultant
-          </CardTitle>
-        </div>
-        <CardDescription className="text-xs text-gray-400 font-mono">
-          Powered by Gemini RAG
-        </CardDescription>
-      </CardHeader>
-
-      <CardContent className="flex-1 p-0 overflow-hidden relative flex flex-col">
-        <ScrollArea className="flex-1 p-4">
-          <div className="space-y-4">
-            {messages.map((m, i) => (
+    <div className="flex flex-col h-full w-full bg-transparent">
+      <ScrollArea className="flex-1 p-4">
+        <div className="space-y-4">
+          {messages.map((m, i) => (
+            <div
+              key={i}
+              className={`flex gap-3 ${
+                m.role === "user" ? "flex-row-reverse" : "flex-row"
+              }`}
+            >
+              <Avatar className="h-8 w-8 border border-white/10 shrink-0">
+                <AvatarFallback
+                  className={
+                    m.role === "user" ? "bg-blue-900" : "bg-purple-900"
+                  }
+                >
+                  {m.role === "user" ? (
+                    <User className="h-4 w-4" />
+                  ) : (
+                    <Bot className="h-4 w-4" />
+                  )}
+                </AvatarFallback>
+              </Avatar>
               <div
-                key={i}
-                className={`flex gap-3 ${
-                  m.role === "user" ? "flex-row-reverse" : "flex-row"
+                className={`rounded-lg p-3 max-w-[80%] text-sm font-terminal leading-relaxed whitespace-pre-wrap break-words ${
+                  m.role === "user"
+                    ? "bg-blue-950/50 text-blue-100 border border-blue-500/20"
+                    : "bg-purple-950/50 text-purple-100 border border-purple-500/20"
                 }`}
               >
-                <Avatar className="h-8 w-8 border border-white/10">
-                  <AvatarFallback
-                    className={
-                      m.role === "user" ? "bg-blue-900" : "bg-purple-900"
-                    }
-                  >
-                    {m.role === "user" ? (
-                      <User className="h-4 w-4" />
-                    ) : (
-                      <Bot className="h-4 w-4" />
-                    )}
-                  </AvatarFallback>
-                </Avatar>
-                <div
-                  className={`rounded-lg p-3 max-w-[80%] text-sm font-terminal leading-relaxed whitespace-pre-wrap break-words ${
-                    m.role === "user"
-                      ? "bg-blue-950/50 text-blue-100 border border-blue-500/20"
-                      : "bg-purple-950/50 text-purple-100 border border-purple-500/20"
-                  }`}
-                >
-                  {m.content}
-                </div>
+                {m.content}
               </div>
-            ))}
-            {isLoading && (
-              <div className="flex gap-3">
-                <Avatar className="h-8 w-8 border border-white/10">
-                  <AvatarFallback className="bg-purple-900">
-                    <Bot className="h-4 w-4" />
-                  </AvatarFallback>
-                </Avatar>
-                <div className="bg-purple-950/30 rounded-lg p-3 text-sm text-purple-200 animate-pulse">
-                  Thinking...
-                </div>
+            </div>
+          ))}
+          {isLoading && (
+            <div className="flex gap-3">
+              <Avatar className="h-8 w-8 border border-white/10 shrink-0">
+                <AvatarFallback className="bg-purple-900">
+                  <Bot className="h-4 w-4" />
+                </AvatarFallback>
+              </Avatar>
+              <div className="bg-purple-950/30 rounded-lg p-3 text-sm text-purple-200 animate-pulse">
+                Thinking...
               </div>
-            )}
-            <div ref={scrollRef} />
-          </div>
-        </ScrollArea>
-
-        <div className="p-4 border-t border-white/10 bg-black/20">
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              sendMessage();
-            }}
-            className="flex gap-2"
-          >
-            <Input
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              placeholder="Describe your project..."
-              className="bg-black/50 border-white/20 focus-visible:ring-purple-500 font-terminal text-sm"
-              disabled={isLoading}
-            />
-            <Button
-              type="submit"
-              size="icon"
-              disabled={isLoading}
-              className="bg-purple-600 hover:bg-purple-700 text-white"
-            >
-              <Send className="h-4 w-4" />
-            </Button>
-          </form>
+            </div>
+          )}
+          <div ref={scrollRef} />
         </div>
-      </CardContent>
-    </Card>
+      </ScrollArea>
+
+      <div className="p-4 border-t border-white/10 bg-black/20 mt-auto">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            sendMessage();
+          }}
+          className="flex gap-2"
+        >
+          <Input
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Describe your project..."
+            className="bg-black/50 border-white/20 focus-visible:ring-purple-500 font-terminal text-sm"
+            disabled={isLoading}
+          />
+          <Button
+            type="submit"
+            size="icon"
+            disabled={isLoading}
+            className="bg-purple-600 hover:bg-purple-700 text-white shrink-0"
+          >
+            <Send className="h-4 w-4" />
+          </Button>
+        </form>
+      </div>
+    </div>
   );
 }

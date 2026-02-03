@@ -39,15 +39,17 @@ export default function RootLayout({
       <body
         className={`${pressStart2P.variable} ${vt323.variable} font-terminal bg-black text-green-400 selection:bg-green-500 selection:text-black`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Providers>{children}</Providers>
-          <Toaster />
-        </ThemeProvider>
+        <Providers>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+            <Toaster />
+          </ThemeProvider>
+        </Providers>
       </body>
     </html>
   );
