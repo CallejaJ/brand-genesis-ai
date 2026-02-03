@@ -17,87 +17,71 @@
 
 ## Project Overview
 
-BrandGenesis AI transforms the concept of a simple favicon generator into a comprehensive **Web3 Brand Consultant**. Users interact with an AI specialized in design theory to create a unique logo and color palette, which can then be minted as an NFT on the Sepolia testnet without paying any gas fees.
+**BrandGenesis AI** is a comprehensive **Web3 Brand Consultant** that goes beyond simple random generation. It combines the reasoning capabilities of **Google Gemini 2.0 Flash** with a robust **On-Demand Icon System** to create meaningful, tailored brand identities.
+
+Users can describe their project's vision, audience, and vibe, and the AI will design a logo (icon, shape, color palette) that can be minted as an **On-Chain SVG NFT** on the Sepolia testnet.
 
 ### Core Features
 
-| Feature                  | Description                                                                         |
-| ------------------------ | ----------------------------------------------------------------------------------- |
-| **AI Design Consultant** | Gemini-powered chat interface that suggests logos based on your project description |
-| **Instant Preview**      | Real-time rendering of your favicon in various contexts (Browser, Mobile, App)      |
-| **Gasless Minting**      | Mint your Brand NFT for free, sponsored by ZeroDev (Account Abstraction)            |
-| **Smart Auth**           | Seamless login via Email, Google, or Wallet using Privy                             |
-| **Retro Aesthetic**      | A fully immersive Cyberpunk/Arcade UI with scanlines and neon typography            |
+| Feature                  | Description                                                                                |
+| ------------------------ | ------------------------------------------------------------------------------------------ |
+| **AI Design Consultant** | **Gemini 2.0 Flash** powered chat interface that acts as a Senior Designer.                |
+| **On-Demand Icons**      | Access to **1,500+ Lucide icons**, generated dynamically based on AI context.              |
+| **Instant Preview**      | Real-time SVG rendering of your brand in various contexts (Browser, Mobile app).           |
+| **Gasless Minting**      | Mint your Brand NFT for **free**, sponsored by **ZeroDev** (ERC-4337 Account Abstraction). |
+| **On-Chain Storage**     | The SVG path data is stored **directly on the smart contract**, ensuring permanence.       |
+| **Export Ready**         | Download your logo as a high-quality SVG/PNG instantly.                                    |
 
 ---
 
 ## How It Works
 
-```
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   User Chats    │───>│   AI Generates  │───>│  Preview Brand  │
-│   with Consultant│    │   Identity      │    │                 │
-└─────────────────┘    └─────────────────┘    └────────┬────────┘
-                                                       │
-                                                       v
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│  NFT Minted     │<───│  Gasless TX     │<───│   User Mints    │
-│  On-Chain       │    │  (ZeroDev)      │    │   Brand Identity│
-└─────────────────┘    └─────────────────┘    └─────────────────┘
+```mermaid
+graph TD
+    A[User] -->|Chats with| B(AI Consultant)
+    B -->|Generates Config| C{Brand Identity}
+    C -->|Colors| D[Tailwind Palette]
+    C -->|Icon Name| E[Lucide Library]
+    E -->|SVG Path| F[Visual Preview]
+    F -->|User Mints| G[Smart Contract]
+    G -->|Stores| H[On-Chain SVG Data]
 ```
 
-### The Workflow
+### The 3-Step Workflow
 
-1. **Consultation**: Describe your project to the AI (e.g., "A DeFi protocol for yield farming").
-2. **Generation**: The AI applies design principles to suggest an icon, shape, and color palette.
-3. **Refinement**: Tweak the design manually or ask the AI for changes.
-4. **Minting**: Once satisfied, mint your brand as an NFT. ZeroDev handles the gas fees via a Paymaster.
+1.  **AI Design**: Chat with the consultant. Tell it about your "DeFi Yield Aggregator" or "Cyberpunk Game". It will reason about color psychology and symbolism to suggest a design.
+2.  **Preview**: See your logo come to life instantly. The system pulls the correct SVG path from a library of 1500+ icons. You can refine the design by talking to the AI.
+3.  **Mint**: Once satisfied, one click mints the branding as an NFT. You own the **path data** forever on Sepolia.
 
 ---
 
-## AI Consultant System
+## Smart Contract Architecture
 
-The platform leverages **Google Gemini 1.5 Flash** with a specialized system prompt acting as a Senior Brand Designer.
+The project uses a custom ERC-721 contract (`BrandGenesis.sol`) optimized for on-chain design storage.
 
-### Capabilities
-
-| Skill                 | Description                                                          |
-| --------------------- | -------------------------------------------------------------------- |
-| **Color Psychology**  | Suggests colors that evoke the right emotions (e.g., Blue for Trust) |
-| **Symbolism**         | Chooses shapes and icons that align with the brand archetype         |
-| **Context Awareness** | Adapts designs based on the specific industry (Web3, SaaS, Gaming)   |
-
----
-
-## Gasless Transactions (Account Abstraction)
-
-Users can mint their Brand NFTs **without holding ETH**. This is powered by:
-
-- **ZeroDev**: Kernel Smart Accounts (ERC-4337)
-- **Privy**: Information-less wallet creation
-- **Paymaster**: Automatically sponsors the minting transaction
+- **Dynamic SVG Generation**: The `tokenURI` function constructs the SVG string on-the-fly using the stored parameters (Path Data, ViewBox, Fill Color).
+- **Serverless**: No IPFS or external API is required to render the image once minted. It lives on Ethereum.
 
 ---
 
 ## Technology Stack
 
-### Frontend
+### Frontend & Logic
 
-- **[Next.js 15](https://nextjs.org/)** - App Router
+- **[Next.js 15](https://nextjs.org/)** - App Router & Server Actions
 - **[React 19](https://react.dev/)** - UI Library
-- **[Tailwind CSS](https://tailwindcss.com/)** - Styling (Retro Theme)
-- **[shadcn/ui](https://ui.shadcn.com/)** - Components
-- **[Lucide React](https://lucide.dev/)** - Icons
+- **[Tailwind CSS](https://tailwindcss.com/)** - Retro/Cyberpunk Styling
+- **[Lucide React](https://lucide.dev/)** - Icon System
 
-### Web3
+### Web3 & Auth
 
-- **[Privy](https://privy.io/)** - Authentication & Embedded Wallets
-- **[ZeroDev](https://zerodev.app/)** - Account Abstraction (AA)
-- **[viem](https://viem.sh/)** - Low-level Ethereum interactions
+- **[Privy](https://privy.io/)** - Embedded Wallets & Auth (Email, Google, Wallet)
+- **[ZeroDev](https://zerodev.app/)** - Account Abstraction (Gasless Paymaster)
+- **[viem](https://viem.sh/)** - Type-safe Ethereum interactions
 
 ### AI
 
-- **[Google Gemini API](https://ai.google.dev/)** - Generative AI Model
+- **[Google Gemini API](https://ai.google.dev/)** - `gemini-2.0-flash-exp` for high-speed design reasoning.
 
 ---
 
@@ -106,9 +90,9 @@ Users can mint their Brand NFTs **without holding ETH**. This is powered by:
 ### Prerequisites
 
 - Node.js 18+
-- Privy App ID
-- ZeroDev Project ID
-- Google AI API Key
+- Privy App ID ([Get here](https://dashboard.privy.io/))
+- ZeroDev Project ID ([Get here](https://dashboard.zerodev.app/))
+- Google AI API Key ([Get here](https://aistudio.google.com/))
 
 ### Environment Configuration
 
@@ -134,7 +118,7 @@ SEPOLIA_RPC_URL=https://rpc.sepolia.org
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/brand-genesis-ai.git
+git clone https://github.com/CallejaJ/brand-genesis-ai.git
 cd brand-genesis-ai
 
 # Install dependencies
@@ -143,19 +127,6 @@ npm install
 # Start development server
 npm run dev
 ```
-
-The app will be available at `http://localhost:3000`
-
----
-
-## Deployment
-
-### Vercel (Recommended)
-
-1. Push to GitHub
-2. Import project in [Vercel](https://vercel.com)
-3. Add environment variables (Privy ID, ZeroDev ID, Google Key)
-4. Deploy
 
 ---
 
