@@ -29,7 +29,9 @@ import {
 // Internal component that uses the hook - only rendered if config exists
 function PrivyLoginButton() {
   const { login, authenticated, ready, user, logout } = usePrivy();
-  const { wallets } = useWallets();
+  // Removed unused useWallets hook to prevent potential initialization issues
+
+  console.log("Privy Auth State:", { ready, authenticated, user: !!user });
 
   if (!ready) {
     return (

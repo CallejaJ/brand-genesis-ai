@@ -5,6 +5,7 @@ import { useState } from "react";
 import { FaviconPreview } from "@/components/favicon-preview";
 import { AiConsultant } from "@/components/ai-consultant";
 import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
 import { Legend } from "@/components/legend";
 import {
   Card,
@@ -114,6 +115,7 @@ export default function HomePage() {
           </Card>
         </div>
       </main>
+      <Footer />
     </div>
   );
 }

@@ -15,13 +15,20 @@ export function PrivyProviderWrapper({
     return <>{children}</>;
   }
 
+  console.log(
+    "Initializing PrivyProvider with App ID:",
+    privyAppId.slice(0, 5) + "...",
+  );
+
   return (
     <BasePrivyProvider
       appId={privyAppId}
       config={{
         // Embedded wallets for gasless onboarding
         embeddedWallets: {
-          createOnLogin: "users-without-wallets",
+          ethereum: {
+            createOnLogin: "users-without-wallets",
+          },
         },
         // Sepolia testnet
         defaultChain: sepolia,
