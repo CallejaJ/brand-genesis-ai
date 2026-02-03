@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Brain } from "lucide-react";
 
 import { FaviconPreview } from "@/components/favicon-preview";
 import { AiConsultant } from "@/components/ai-consultant";
