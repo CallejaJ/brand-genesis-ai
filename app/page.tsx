@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import { FaviconPreview } from "@/components/favicon-preview";
 import { AiConsultant } from "@/components/ai-consultant";
-import { LoginButton } from "@/components/login-button";
+import { Header } from "@/components/header";
 import { Legend } from "@/components/legend";
 import {
   Card,
@@ -37,30 +37,14 @@ export default function HomePage() {
       <div className="fixed inset-0 pointer-events-none bg-[url('/scanlines.png')] opacity-[0.03] z-[100]" />
 
       {/* Header */}
-      <header className="border-b border-white/10 bg-black/50 backdrop-blur-md sticky top-0 z-50">
-        <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="h-8 w-8 relative flex items-center justify-center">
-              <img
-                src="/logo-transparent.png"
-                alt="BrandGenesis Logo"
-                className="h-full w-full object-contain"
-              />
-            </div>
-            <h1 className="text-xl font-press-start bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-blue-400 to-green-400 hidden sm:block">
-              BrandGenesis
-              <span className="text-[10px] ml-2 text-white/50">AI</span>
-            </h1>
-          </div>
-          <LoginButton />
-        </div>
-      </header>
+      <Header />
 
-      <main className="container mx-auto px-4 py-8">
+      <main className="container mx-auto px-4 pb-8">
+        <div className="h-48 w-full" />
         <Legend />
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-16">
           {/* Step 1: Design */}
-          <Card className="bg-black/40 border-purple-500/20 backdrop-blur-sm h-full flex flex-col">
+          <Card className="bg-black/40 border-purple-500/50 shadow-[0_0_30px_rgba(168,85,247,0.3)] backdrop-blur-sm h-full flex flex-col hover:border-purple-500/100 hover:shadow-[0_0_60px_rgba(168,85,247,0.6)] transition-all duration-500 mb-20">
             <CardHeader className="pb-2">
               <Badge
                 variant="outline"
@@ -81,7 +65,7 @@ export default function HomePage() {
           </Card>
 
           {/* Step 2: Preview */}
-          <Card className="bg-black/40 border-primary/20 backdrop-blur-sm h-full flex flex-col">
+          <Card className="bg-black/40 border-blue-500/50 shadow-[0_0_30px_rgba(59,130,246,0.3)] backdrop-blur-sm h-full flex flex-col hover:border-blue-500/100 hover:shadow-[0_0_60px_rgba(59,130,246,0.6)] transition-all duration-500 mb-20">
             <CardHeader>
               <Badge
                 variant="outline"
@@ -100,7 +84,7 @@ export default function HomePage() {
           </Card>
 
           {/* Step 3: Mint */}
-          <Card className="bg-black/40 border-green-500/20 backdrop-blur-sm h-full flex flex-col">
+          <Card className="bg-black/40 border-green-500/80 shadow-[0_0_30px_rgba(34,197,94,0.3)] backdrop-blur-sm h-full flex flex-col hover:border-green-500/100 hover:shadow-[0_0_60px_rgba(34,197,94,0.6)] transition-all duration-500 mb-20">
             <CardHeader>
               <Badge
                 variant="outline"
@@ -115,7 +99,7 @@ export default function HomePage() {
             </CardHeader>
             <CardContent className="flex-1 flex flex-col items-center text-center p-6">
               <div className="flex-1 flex flex-col items-center justify-center gap-6">
-                <div className="p-6 rounded-full bg-gradient-to-br from-purple-500/20 to-blue-500/20 animate-pulse">
+                <div className="p-6 animate-pulse">
                   <img
                     src="/logo-transparent.png"
                     className="w-18 h-18"

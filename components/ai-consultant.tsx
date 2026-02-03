@@ -36,8 +36,11 @@ export function AiConsultant({ onUpdateConfig }: AiConsultantProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollIntoView({ behavior: "smooth" });
+    if (scrollRef.current && messages.length > 1) {
+      scrollRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+      });
     }
   }, [messages]);
 

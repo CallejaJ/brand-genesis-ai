@@ -8,7 +8,8 @@ export function Legend() {
           icon: Sparkles,
           color: "text-purple-400",
           bg: "bg-purple-500/10",
-          border: "border-purple-500/20",
+          border:
+            "border-purple-500/50 shadow-[0_0_15px_rgba(168,85,247,0.1)] hover:border-purple-500/80 hover:shadow-[0_0_25px_rgba(168,85,247,0.3)]",
           title: "1. AI Design",
           desc: "Describe your vision. Gemini builds your identity.",
         },
@@ -16,7 +17,8 @@ export function Legend() {
           icon: PenTool,
           color: "text-blue-400",
           bg: "bg-blue-500/10",
-          border: "border-blue-500/20",
+          border:
+            "border-blue-500/50 shadow-[0_0_15px_rgba(59,130,246,0.1)] hover:border-blue-500/80 hover:shadow-[0_0_25px_rgba(59,130,246,0.3)]",
           title: "2. On-Demand",
           desc: "Unlimited SVG icons generate instantly.",
         },
@@ -24,7 +26,8 @@ export function Legend() {
           icon: Wallet,
           color: "text-green-400",
           bg: "bg-green-500/10",
-          border: "border-green-500/20",
+          border:
+            "border-green-500/80 shadow-[0_0_15px_rgba(34,197,94,0.1)] hover:border-green-500/80 hover:shadow-[0_0_25px_rgba(34,197,94,0.3)]",
           title: "3. Free Mint",
           desc: "Mint your unique SVG icon as an NFT. You own the path data forever.",
         },
