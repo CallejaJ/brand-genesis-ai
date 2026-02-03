@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { FaviconGenerator } from "@/components/favicon-generator";
+
 import { FaviconPreview } from "@/components/favicon-preview";
 import { AiConsultant } from "@/components/ai-consultant";
 import { LoginButton } from "@/components/login-button";
+import { Legend } from "@/components/legend";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -57,94 +58,77 @@ export default function HomePage() {
       </header>
 
       <main className="container mx-auto px-4 py-8">
-        <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8 lg:h-[calc(100vh-8rem)]">
-          {/* Left Column: AI Consultant (4 cols) */}
-          <div className="lg:col-span-4 flex flex-col gap-4">
-            <div className="flex items-center justify-between mb-2">
+        <Legend />
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-16">
+          {/* Step 1: Design */}
+          <Card className="bg-black/40 border-purple-500/20 backdrop-blur-sm h-full flex flex-col">
+            <CardHeader className="pb-2">
               <Badge
                 variant="outline"
-                className="border-purple-500/50 text-purple-400 font-terminal"
+                className="w-fit mb-12 border-purple-500/50 text-purple-400 font-terminal"
               >
                 STEP 1: DESIGN
               </Badge>
-            </div>
-            <AiConsultant onUpdateConfig={handleAiUpdate} />
-          </div>
+              <CardTitle className="text-white text-lg">
+                AI Consultant
+              </CardTitle>
+              <CardDescription>Powered by Gemini 2.0 Flash</CardDescription>
+            </CardHeader>
+            <CardContent className="h-[500px] p-0 overflow-hidden text-left">
+              <div className="h-full w-full p-4 pt-0">
+                <AiConsultant onUpdateConfig={handleAiUpdate} />
+              </div>
+            </CardContent>
+          </Card>
 
-          {/* Right Column: Preview & Adjust (8 cols) */}
-          <div className="lg:col-span-8 flex flex-col gap-4 overflow-y-auto">
-            <div className="flex items-center justify-between mb-2">
+          {/* Step 2: Preview */}
+          <Card className="bg-black/40 border-primary/20 backdrop-blur-sm h-full flex flex-col">
+            <CardHeader>
               <Badge
                 variant="outline"
-                className="border-blue-500/50 text-blue-400 font-terminal"
+                className="w-fit mb-12 border-blue-500/50 text-blue-400 font-terminal"
               >
-                STEP 2: PREVIEW & MINT
+                STEP 2: PREVIEW
               </Badge>
-            </div>
+              <CardTitle className="font-terminal text-lg text-blue-300">
+                Visual Output
+              </CardTitle>
+              <CardDescription>Real-time SVG rendering</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <FaviconPreview config={faviconConfig} />
+            </CardContent>
+          </Card>
 
-            <div className="grid md:grid-cols-2 gap-6">
-              {/* Live Preview */}
-              <Card className="bg-black/40 border-primary/20 backdrop-blur-sm">
-                <CardHeader>
-                  <CardTitle className="font-terminal text-lg text-blue-300">
-                    Visual Output
-                  </CardTitle>
-                  <CardDescription>Real-time rendering</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <FaviconPreview config={faviconConfig} />
-                </CardContent>
-              </Card>
-
-              {/* Minting & Export */}
-              <Card className="bg-black/40 border-green-500/20 backdrop-blur-sm">
-                <CardHeader>
-                  <CardTitle className="font-terminal text-lg text-green-300">
-                    Ownership
-                  </CardTitle>
-                  <CardDescription>Mint your brand on Sepolia</CardDescription>
-                </CardHeader>
-                <CardContent className="flex flex-col gap-4 items-center justify-center h-[200px]">
-                  <MintButton />
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Manual Adjustment Tabs */}
-            <Card className="bg-black/40 border-white/10 mt-4">
-              <Tabs defaultValue="manual" className="w-full">
-                <div className="flex items-center justify-between px-6 pt-6">
-                  <CardTitle className="font-terminal text-sm">
-                    Fine Tuning
-                  </CardTitle>
-                  <TabsList className="bg-black/50 border border-white/10">
-                    <TabsTrigger value="manual" className="text-xs">
-                      Manual Edit
-                    </TabsTrigger>
-                    <TabsTrigger value="code" className="text-xs">
-                      Export Code
-                    </TabsTrigger>
-                  </TabsList>
+          {/* Step 3: Mint */}
+          <Card className="bg-black/40 border-green-500/20 backdrop-blur-sm h-full flex flex-col">
+            <CardHeader>
+              <Badge
+                variant="outline"
+                className="w-fit mb-12 border-green-500/50 text-green-400 font-terminal"
+              >
+                STEP 3: MINT
+              </Badge>
+              <CardTitle className="font-terminal text-lg text-green-300">
+                Ownership
+              </CardTitle>
+              <CardDescription>Secure on Sepolia Testnet</CardDescription>
+            </CardHeader>
+            <CardContent className="flex-1 flex flex-col items-center text-center p-6">
+              <div className="flex-1 flex flex-col items-center justify-center gap-6">
+                <div className="p-6 rounded-full bg-green-500/10 animate-pulse">
+                  <img
+                    src="/logo-transparent.png"
+                    className="w-32 h-32 opacity-50 grayscale"
+                    alt="Ghost"
+                  />
                 </div>
-                <CardContent className="pt-6">
-                  <TabsContent value="manual" className="mt-0">
-                    <FaviconGenerator
-                      config={faviconConfig}
-                      onChange={setFaviconConfig}
-                    />
-                  </TabsContent>
-                  <TabsContent value="code">
-                    <div className="p-4 bg-black rounded border border-white/10 font-mono text-xs text-gray-400">
-                      {/* We could duplicate the logic to show SVG code here or just rely on the existing download button within Generator */}
-                      Select 'Manual Edit' to download the SVG or adjust
-                      specific parameters manually if the AI result needs
-                      tweaking.
-                    </div>
-                  </TabsContent>
-                </CardContent>
-              </Tabs>
-            </Card>
-          </div>
+              </div>
+              <div className="w-full mt-auto pt-6">
+                <MintButton config={faviconConfig} />
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </main>
     </div>
