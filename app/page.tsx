@@ -118,8 +118,8 @@ export default function HomePage() {
               <div className="flex-1 flex flex-col items-center justify-center gap-6">
                 <div className="p-6 rounded-full bg-gradient-to-br from-purple-500/20 to-blue-500/20 animate-pulse">
                   <img
-                    src="/logo.png"
-                    className="w-24 h-24 mix-blend-screen"
+                    src="/logo-transparent.png"
+                    className="w-24 h-24"
                     alt="Brain Animation"
                   />
                 </div>
